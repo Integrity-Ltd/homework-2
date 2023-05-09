@@ -1,8 +1,8 @@
 abstract class Animal {
-    private name: string;
+    protected _name: string;
 
     constructor(name: string) {
-        this.name = name;
+        this._name = name;
     }
 
     abstract sound(): string;
@@ -10,8 +10,8 @@ abstract class Animal {
         return this.sound();
     }
 
-    public getName(): string {
-        return this.name;
+    public get name(): string {
+        return this._name;
     }
 }
 
@@ -27,7 +27,13 @@ class Cat extends Animal {
     }
 }
 
-let animals: Animal[] = [new Dog("Pubi"), new Cat("Cirmi")];
+class Parrot extends Animal {
+    public sound(): string {
+        return this.name.repeat(3);
+    }
+}
+
+let animals: Animal[] = [new Dog("Pubi"), new Cat("Cirmi"), new Parrot("Pityuka")];
 animals.forEach((animal) => {
-    console.log(animal.getName() + " says " + animal.saySomething());
-})
+    console.log(animal.name + " says " + animal.saySomething());
+});
