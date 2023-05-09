@@ -1,7 +1,17 @@
 abstract class Animal {
+    private name: string;
+
+    constructor(name: string) {
+        this.name = name;
+    }
+
     abstract sound(): string;
     public saySomething(): string {
         return this.sound();
+    }
+
+    public getName(): string {
+        return this.name;
     }
 }
 
@@ -17,7 +27,7 @@ class Cat extends Animal {
     }
 }
 
-let animals: Animal[] = [new Dog(), new Cat()];
+let animals: Animal[] = [new Dog("Pubi"), new Cat("Cirmi")];
 animals.forEach((animal) => {
-    console.log(animal.saySomething());
+    console.log(animal.getName() + " says " + animal.saySomething());
 })
